@@ -1,0 +1,13 @@
+Config:
+  # Contribute to our statistics anonymously with FastStats. More information: https://faststats.dev/
+  faststats_metrics: true
+
+  # Settings for the automatic plugin updater
+  auto_updater:
+    # The plugin will attempt to auto-update when it finds a new version
+    download: true
+    # The plugin will send an update notification when it finds a new version if auto-update is disabled
+    notify: true
+
+    # Number of seconds to wait until a new update is downloaded
+    delay: 28800 # 8 hours
