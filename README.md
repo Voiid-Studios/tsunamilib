@@ -1,11 +1,12 @@
 ![Banner](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/banner.png)
 
 <p align="center" style="text-align: center;">
-  <a href="https://ko-fi.com/maxxvoiid/donate"><img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-plural_vector.svg" alt="Support us on Ko-fi" style="margin: 5px 10px;"></a>
-  <a href="https://modrinth.com/plugin/tsunami"><img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg" alt="Download on Modrinth" style="margin: 5px 10px;"></a>
-  <br><a href="https://github.com/Voiid-Studios/voiidstudios/blob/main/LICENSE.md"><img src="https://voiid-studios.github.io/stuff/assets/buttons/vspl_license.svg" alt="View the Voiid Studios Public License" style="margin: 5px 10px;"></a>
-  <a href="https://github.com/Voiid-Studios/tsunamilib/issues/new/choose"><img src="https://voiid-studios.github.io/stuff/assets/buttons/reportbugs_compact.svg" alt="Report Bugs on GitHub" style="margin: 5px 10px;"></a>
-  <a href="https://github.com/Voiid-Studios/tsunamilib"><img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact-minimal/available/github_vector.svg" alt="View Source Code on GitHub" style="margin: 5px 10px;"></a>
+  <a href="https://ko-fi.com/maxxvoiid/donate"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/support_kofi/cozy.svg" alt="Support us on Ko-fi" style="margin: 5px 10px;"></a>
+  <a href="https://modrinth.com/plugin/tsunami"><img src="https://voiid-studios.github.io/stuff/assets/buttons/available/modrinth/cozy.svg" alt="Download on Modrinth" style="margin: 5px 10px;"></a>
+  <br><a href="https://voiid-studios.github.io/tsunamilib/"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/read_jdocs/compact.svg" alt="View the Voiid Studios Public License" style="margin: 5px 10px;"></a>
+  <a href="https://choosealicense.com/licenses/mit/"><img src="https://voiid-studios.github.io/stuff/assets/buttons/license/mit_compact.svg" alt="View the MIT License" style="margin: 5px 10px;"></a>
+  <a href="https://github.com/Voiid-Studios/tsunamilib/issues/new/choose"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/report_bugs/mini.svg" alt="Report Bugs on GitHub" style="margin: 5px 10px;"></a>
+  <a href="https://github.com/Voiid-Studios/tsunamilib"><img src="https://voiid-studios.github.io/stuff/assets/buttons/available/github/mini.svg" alt="View Source Code on GitHub" style="margin: 5px 10px;"></a>
 </p>
 
 ![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
