@@ -8,15 +8,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-hub-tsunamilib"
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -47,18 +45,38 @@ jobs:
             exit 1
           fi
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Generate pages-hub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
         with:
-          path: target/reports/apidocs
+          app-id: ${{ secrets.PAGES_HUB_APP_ID }}
+          private-key: ${{ secrets.PAGES_HUB_APP_PRIVATE_KEY }}
+          owner: Voiid-Studios
+          repositories: pages-hub
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout pages-hub
+        uses: actions/checkout@v4
+        with:
+          repository: Voiid-Studios/pages-hub
+          token: ${{ steps.app-token.outputs.token }}
+          path: pages-hub
+
+      - name: Copy javadoc into pages-hub
+        run: |
+          DEST="pages-hub/jd/tsunamilib/${GITHUB_REF_NAME}"
+          rm -rf "$DEST"
+          mkdir -p "$DEST"
+          cp -r target/reports/apidocs/. "$DEST/"
+
+      - name: Commit and push to pages-hub
+        working-directory: pages-hub
+        run: |
+          git config user.name "pages-hub-writer[bot]"
+          git config user.email "pages-hub-writer[bot]@users.noreply.github.com"
+          git add "jd/tsunamilib/${GITHUB_REF_NAME}"
+          if git diff --cached --quiet; then
+            echo "There are no changes to the Javadoc; skipping commit..."
+            exit 0
+          fi
+          git commit -m "docs(tsunamilib): update javadoc for ${GITHUB_REF_NAME}"
+          git push
