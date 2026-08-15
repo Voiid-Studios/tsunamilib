@@ -1,7 +1,7 @@
 package voiidstudios.tsunamilib.commands.interfaces;
 
 public interface CmdSender {
-    String prefix = "&8[&9TsunamiLib&8]&6 ";
+    String getPrefix();
 
     void sendMsg(String msg, Object... args);
 
@@ -10,7 +10,7 @@ public interface CmdSender {
     }
 
     default void sendPrefixedMsg(String msg, Object... args){
-        sendMsg(prefix + msg, args);
+        sendMsg(getPrefix() + msg, args);
     }
 
     boolean isPlayer();

@@ -14,11 +14,13 @@ public final class MessagesManager {
     private final JavaPlugin plugin;
     private final YALogger logger;
     private final TranslationManager translations;
+    private final String prefix;
 
-    public MessagesManager(JavaPlugin plugin, String language, YALogger logger) {
+    public MessagesManager(JavaPlugin plugin, String langDir, String language, String prefix, YALogger logger) {
         this.plugin = plugin;
         this.logger = logger;
-        this.translations = new TranslationManager(plugin, logger);
+        this.prefix = prefix == null ? "" : prefix;
+        this.translations = new TranslationManager(plugin, logger, langDir);
         this.translations.loadLanguage(language);
     }
 
@@ -56,7 +58,11 @@ public final class MessagesManager {
 
     public void sendPrefixed(CommandSender sender, String key, Map<String, String> placeholders) {
         String msg = get(key, placeholders);
-        new BukkitCmdSender(sender).sendPrefixedMsg(msg);
+        new BukkitCmdSender(sender, prefix).sendPrefixedMsg(msg);
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public void sendList(CommandSender sender, String key, Map<String, String> placeholders) {

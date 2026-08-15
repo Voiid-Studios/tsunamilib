@@ -26,9 +26,7 @@ public final class TsunamiLib {
 
     static void setAPI(TsunamiLib api) {
         if (instance != null) {
-            throw new IllegalStateException(
-                "TsunamiLib API is already set. This should never happen twice without an onDisable() in between - something is very wrong"
-            );
+            throw new IllegalStateException("TsunamiLib API is already set. This should never happen twice without an onDisable() in between - something is very wrong");
         }
         instance = api;
     }
@@ -40,9 +38,7 @@ public final class TsunamiLib {
     public static TsunamiLib getAPI() {
         TsunamiLib api = instance;
         if (api == null) {
-            throw new IllegalStateException(
-                "TsunamiLib API is not available. Either TsunamiLib isn't installed, hasn't enabled yet, or your plugin.yml is missing 'depend: [TsunamiLib]'"
-            );
+            throw new IllegalStateException("TsunamiLib API is not available. Either TsunamiLib isn't installed, hasn't enabled yet, or your plugin.yml is missing 'depend: [TsunamiLib]'");
         }
         return api;
     }
@@ -95,10 +91,10 @@ public final class TsunamiLib {
         return context.getConfigManager();
     }
 
-    public MessagesManager createMessagesManager(JavaPlugin plugin, String language) {
+    public MessagesManager createMessagesManager(JavaPlugin plugin, String langDir, String language, String prefix) {
         if (plugin == null) {
             throw new IllegalArgumentException("plugin cannot be null.");
         }
-        return new MessagesManager(plugin, language, context.getLogger().withName(plugin));
+        return new MessagesManager(plugin, langDir, language, prefix, context.getLogger().withName(plugin));
     }
 }

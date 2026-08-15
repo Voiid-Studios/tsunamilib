@@ -18,28 +18,23 @@ public class FoliaSchedulerAdapter implements SchedulerAdapter {
         this.asyncScheduler = Bukkit.getAsyncScheduler();
     }
 
-    @Override
     public void runTask(Runnable runnable) {
         Bukkit.getGlobalRegionScheduler().run(plugin, task -> runnable.run());
     }
 
-    @Override
     public void runTaskLater(Runnable runnable, long delayTicks) {
         Bukkit.getGlobalRegionScheduler().runDelayed(plugin, task -> runnable.run(), atLeast(delayTicks));
     }
 
-    @Override
     public void runTaskTimer(Runnable runnable, long delayTicks, long periodTicks) {
         Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, task -> runnable.run(),
                 atLeast(delayTicks), atLeast(periodTicks));
     }
 
-    @Override
     public void runAsync(Runnable runnable) {
         asyncScheduler.runNow(plugin, task -> runnable.run());
     }
 
-    @Override
     public void runAsyncTimer(Runnable runnable, long delayTicks, long periodTicks) {
         asyncScheduler.runAtFixedRate(plugin, task -> runnable.run(),
                 atLeast(delayTicks) * TICK_MILLIS, atLeast(periodTicks) * TICK_MILLIS, TimeUnit.MILLISECONDS);

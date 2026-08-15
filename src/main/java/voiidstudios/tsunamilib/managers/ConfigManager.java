@@ -35,9 +35,6 @@ public final class ConfigManager {
         if (!data.exists()) {
             data.mkdirs();
         }
-        new File(data, "messages").mkdirs();
-        new File(data, "messages/custom").mkdirs();
-        new File(data, "messages/origins").mkdirs();
     }
 
     private void ensureCoreConfig() {
@@ -51,7 +48,7 @@ public final class ConfigManager {
     }
 
     public boolean isMetricsEnabled() {
-        return config.getBoolean("Config.faststats_metrics", true);
+        return config.getBoolean("Config.metrics", true);
     }
 
     public boolean isAutoUpdate() {
@@ -66,10 +63,6 @@ public final class ConfigManager {
         long configured = config.getLong("Config.auto_updater.delay", 28800L);
         long minimum = 300L; // 5 minutes
         return Math.max(configured, minimum);
-    }
-
-    public String getLanguage() {
-        return config.getString("Messages.language", "en_US");
     }
 
     public File getConfigFile() {

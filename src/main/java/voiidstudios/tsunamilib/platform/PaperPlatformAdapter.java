@@ -9,15 +9,12 @@ import voiidstudios.tsunamilib.utils.UniversalFormatter;
 import java.lang.reflect.Method;
 
 public class PaperPlatformAdapter implements PlatformAdapter {
-    private final YALogger logger;
     private final UniversalFormatter formatter;
     private Class<?> audienceClass;
     private Class<?> componentClass;
     private Method audienceSendMessageMethod;
-    private boolean warnedSendFallback;
 
     public PaperPlatformAdapter(YALogger logger) {
-        this.logger = logger;
         this.formatter = new UniversalFormatter(logger);
         initializeAudience();
     }
@@ -33,7 +30,6 @@ public class PaperPlatformAdapter implements PlatformAdapter {
             this.componentClass = Class.forName("net.kyori.adventure.text.Component");
             this.audienceSendMessageMethod = audienceClass.getMethod("sendMessage", componentClass);
         } catch (ReflectiveOperationException | LinkageError exception) {
-            warnSendFallback("Adventure is not available", exception);
             this.audienceClass = null;
             this.componentClass = null;
             this.audienceSendMessageMethod = null;
@@ -67,15 +63,7 @@ public class PaperPlatformAdapter implements PlatformAdapter {
         try {
             audienceSendMessageMethod.invoke(sender, formatted);
         } catch (ReflectiveOperationException | LinkageError exception) {
-            warnSendFallback("Could not send the Adventure component", exception);
             sender.sendMessage(TextUtils.toLegacy(message));
         }
-    }
-
-    private void warnSendFallback(String message, Throwable throwable) {
-        if (warnedSendFallback) return;
-        warnedSendFallback = true;
-
-        logger.warning(message + ", so falling back to legacy mode: " + throwable.getClass().getSimpleName() + ": " + throwable.getMessage());
     }
 }
