@@ -1,9 +1,9 @@
-![Banner](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/banner.png)
+![Banner](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/banner.png)
 
 <p align="center" style="text-align: center;">
   <a href="https://ko-fi.com/maxxvoiid/donate"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/support_kofi/cozy.svg" alt="Support us on Ko-fi" style="margin: 5px 10px;"></a>
   <a href="https://modrinth.com/plugin/tsunami"><img src="https://voiid-studios.github.io/stuff/assets/buttons/available/modrinth/cozy.svg" alt="Download on Modrinth" style="margin: 5px 10px;"></a>
-  <br><a href="https://voiid-studios.github.io/tsunamilib/"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/read_jdocs/compact.svg" alt="View the Voiid Studios Public License" style="margin: 5px 10px;"></a>
+  <br><a href="https://voiidstudios.pages.dev/jd/tsunamilib/"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/read_jdocs/compact.svg" alt="View the Voiid Studios Public License" style="margin: 5px 10px;"></a>
   <a href="https://choosealicense.com/licenses/mit/"><img src="https://voiid-studios.github.io/stuff/assets/buttons/license/mit_compact.svg" alt="View the MIT License" style="margin: 5px 10px;"></a>
   <a href="https://github.com/Voiid-Studios/tsunamilib/issues/new/choose"><img src="https://voiid-studios.github.io/stuff/assets/buttons/misc/report_bugs/mini.svg" alt="Report Bugs on GitHub" style="margin: 5px 10px;"></a>
   <a href="https://github.com/Voiid-Studios/tsunamilib"><img src="https://voiid-studios.github.io/stuff/assets/buttons/available/github/mini.svg" alt="View Source Code on GitHub" style="margin: 5px 10px;"></a>
@@ -17,7 +17,7 @@ TsunamiLib (TL) is a library plugin that Voiid Studios uses in several of its pr
 
 For server administrators, it's just another plugin on the list that will ensure the plugins continue to function properly.
 
-For developers who want to use TsunamiLib in their projects, there is currently no official documentation covering all the methods in this library, but the [JDocs for TsunamiLib are active.](https://voiid-studios.github.io/tsunamilib/) You can learn how to use the library by exploring the open-source plugins from Voiid Studios!
+For developers who want to use TsunamiLib in their projects, there is currently no official documentation covering all the methods in this library, but the [JDocs for TsunamiLib are active.](https://voiidstudios.pages.dev/jd/tsunamilib/) You can learn how to use the library by exploring the open-source plugins from Voiid Studios!
 
 ![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
 
