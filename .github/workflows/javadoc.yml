@@ -40,15 +40,15 @@ jobs:
 
       - name: Verify Javadoc output
         run: |
-          if [ ! -d target/site/apidocs ] || [ -z "$(ls -A target/site/apidocs)" ]; then
-            echo "target/site/apidocs is missing or empty, check the Javadoc log above"
+          if [ ! -d target/reports/apidocs ] || [ -z "$(ls -A target/reports/apidocs)" ]; then
+            echo "target/reports/apidocs is missing or empty, check the Javadoc log above"
             exit 1
           fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: target/site/apidocs
+          path: target/reports/apidocs
 
   deploy:
     needs: build
