@@ -9,7 +9,7 @@
   <a href="https://github.com/Voiid-Studios/tsunamilib"><img src="https://voiid-studios.github.io/stuff/assets/buttons/available/github/mini.svg" alt="View Source Code on GitHub" style="margin: 5px 10px;"></a>
 </p>
 
-![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
+![Divider](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/divider.png)
 
 ## 📖 About
 
@@ -19,7 +19,7 @@ For server administrators, it's just another plugin on the list that will ensure
 
 For developers who want to use TsunamiLib in their projects, there is currently no official documentation covering all the methods in this library, but the [JDocs for TsunamiLib are active.](https://voiidstudios.pages.dev/jd/tsunamilib/) You can learn how to use the library by exploring the open-source plugins from Voiid Studios!
 
-![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
+![Divider](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/divider.png)
 
 ## ✨ Features
 
@@ -31,7 +31,7 @@ For developers who want to use TsunamiLib in their projects, there is currently 
 - 🔄 **Update Checking**: Built-in update checker/downloader so dependent plugins can notify admins of new versions without their own implementation.
 - 📦 **Lightweight Foundation**: Runs quietly in the background — no gameplay content, no clutter, just shared systems your plugins can build on.
 
-![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
+![Divider](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/divider.png)
 
 ## 📦 Installation
 
@@ -43,7 +43,7 @@ For developers who want to use TsunamiLib in their projects, there is currently 
 
 ⏩ **NO OTHER DEPENDENCIES REQUIRED**
 
-![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
+![Divider](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/divider.png)
 
 ## 📚 Voiid Studios projects that require TsunamiLib
 
@@ -55,7 +55,7 @@ For developers who want to use TsunamiLib in their projects, there is currently 
 | Waiting Screen        | ❌ No          | WS doesn't need TsunamiLib because it uses a different approach                               |
 | QuestMaster           | ❌ No          | QM doesn't need TsunamiLib because it uses a different approach                               |
 
-![Divider](https://voiid-studios.github.io/stuff/assets/proyect/TsunamiLib/divider.png)
+![Divider](https://voiid-studios.github.io/stuff/assets/project/TsunamiLib/divider.png)
 
 ## ⚡ fastStats
 <a href="https://faststats.dev/project/tsunami/stats"><img src="https://faststats.dev/embed/a2facd86-aade-4640-8404-31cf9fd49d02.svg?w=960&h=340&theme=dark" alt="Servers & Players"></a>
