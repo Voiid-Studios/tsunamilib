@@ -5,7 +5,7 @@
 
     <groupId>voiidstudios.tsunamilib</groupId>
     <artifactId>TsunamiLib</artifactId>
-    <version>0.0.3+indev</version>
+    <version>26.08.0</version>
     <packaging>jar</packaging>
 
     <properties>
