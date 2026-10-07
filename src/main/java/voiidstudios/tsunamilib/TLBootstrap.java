@@ -7,6 +7,7 @@ import voiidstudios.tsunamilib.log.ConsoleBox;
 import voiidstudios.tsunamilib.log.JavaLoggerImpl;
 import voiidstudios.tsunamilib.log.LogPrefixStyle;
 import voiidstudios.tsunamilib.log.YALogger;
+import voiidstudios.tsunamilib.managers.ConfigManager;
 import voiidstudios.tsunamilib.platform.ServerInfo;
 import voiidstudios.tsunamilib.update.TLUpdateChecker;
 import voiidstudios.tsunamilib.update.TLUpdateCheckerResult;
@@ -34,6 +35,12 @@ public final class TLBootstrap extends JavaPlugin {
     private boolean firstUpdateCheck = true;
 
     public void onEnable() {
+        ConfigManager configManager = new ConfigManager(this);
+        configManager.bootstrap();
+
+        // Must happen before the first log line so the banner already uses the configured format
+        YALogger.setModernFormat(configManager.isModernLogFormat());
+
         yaLogger = new YALogger(new JavaLoggerImpl(Bukkit.getServer().getLogger()), true, TL_PREFIX);
 
         sendConsoleInformationMessage();
@@ -44,7 +51,7 @@ public final class TLBootstrap extends JavaPlugin {
             System.setProperty(WE_LOADED_PROPERTY, "true");
         }
 
-        context = new TLContext(this, yaLogger);
+        context = new TLContext(this, yaLogger, configManager);
         tlMetrics = new TLMetrics(context);
 
         context.setTLMetrics(tlMetrics);

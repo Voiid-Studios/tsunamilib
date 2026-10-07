@@ -2,6 +2,12 @@ Config:
   # Contribute to our statistics anonymously with FastStats. More information: https://faststats.dev/
   metrics: true
 
+  # Logger settings for plugins that use TsunamiLib
+  logger:
+    # The modern format uses [✓] or [-] instead of [OK] or [PROCESS]. Disable it if your console has trouble rendering Unicode characters.
+    # Requires a server restart to apply.
+    modern_format: true
+
   # Settings for the automatic plugin updater
   auto_updater:
     # The plugin will attempt to auto-update when it finds a new version

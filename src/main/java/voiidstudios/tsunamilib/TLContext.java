@@ -22,11 +22,10 @@ public final class TLContext {
 
     private TLMetrics tlMetrics;
 
-    public TLContext(TLBootstrap plugin, YALogger logger) {
+    public TLContext(TLBootstrap plugin, YALogger logger, ConfigManager configManager) {
         this.plugin = plugin;
         this.logger = logger;
-        this.configManager = new ConfigManager(plugin);
-        this.configManager.bootstrap();
+        this.configManager = configManager;
         this.platformAdapter = createPlatformAdapter();
         this.schedulerAdapter = createSchedulerAdapter();
         this.adventureManager = new AdventureManager(plugin, logger);

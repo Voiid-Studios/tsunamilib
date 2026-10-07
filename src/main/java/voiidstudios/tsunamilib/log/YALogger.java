@@ -1,37 +1,50 @@
 package voiidstudios.tsunamilib.log;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
 public class YALogger {
     private final EpicPlatformLogger logger;
     private final boolean color;
     private final LogPrefixStyle prefixStyle;
+    private final String namePrefix;
     private boolean debug;
 
+    private static volatile boolean modernFormat = true;
+
+    public static void setModernFormat(boolean modern) {
+        modernFormat = modern;
+    }
+
+    public static boolean isModernFormat() {
+        return modernFormat;
+    }
+
     public YALogger(EpicPlatformLogger logger, boolean color, LogPrefixStyle prefixStyle) {
+        this(logger, color, prefixStyle, "");
+    }
+
+    private YALogger(EpicPlatformLogger logger, boolean color, LogPrefixStyle prefixStyle, String namePrefix) {
         if (prefixStyle == null) {
-            throw new IllegalArgumentException(
-                "prefixStyle cannot be null. A YALogger must always be scoped to an explicit " +
-                "prefix — use withName(plugin) if you don't have a custom LogPrefixStyle yet."
-            );
+            throw new IllegalArgumentException("prefixStyle cannot be null. A YALogger must always be scoped to an explicit prefix. Use LogPrefixStyle.defaultFor(name) if you don't have a custom LogPrefixStyle yet!");
         }
         this.logger = logger;
         this.color = color;
         this.prefixStyle = prefixStyle;
+        this.namePrefix = namePrefix == null ? "" : namePrefix;
     }
 
-    public YALogger withName(JavaPlugin plugin) {
-        return withName(plugin, null);
-    }
-
-    public YALogger withName(JavaPlugin plugin, LogPrefixStyle style) {
-        if (plugin == null) {
-            throw new IllegalArgumentException("plugin cannot be null.");
-        }
-        LogPrefixStyle resolved = style != null ? style : LogPrefixStyle.defaultFor(plugin.getName());
-        YALogger named = new YALogger(logger, color, resolved);
+    public YALogger withName(String name) {
+        String tag = (name == null || name.isBlank()) ? "" : "(" + name + ") ";
+        YALogger named = new YALogger(logger, color, prefixStyle, tag);
         named.debug = this.debug;
         return named;
+    }
+
+    public YALogger withStyle(LogPrefixStyle style) {
+        if (style == null) {
+            throw new IllegalArgumentException("style cannot be null.");
+        }
+        YALogger styled = new YALogger(logger, color, style, namePrefix);
+        styled.debug = this.debug;
+        return styled;
     }
 
     public void setDebug(boolean debug) {
@@ -132,7 +145,7 @@ public class YALogger {
     }
 
     public void severe(String message, Throwable thrown) {
-        log(EpicLogLevel.SEVERE, message, thrown);
+        log(EpicLogLevel.SEVERE, withStackTrace(message, thrown));
     }
 
     public void passiveSevere(String message) {
@@ -140,7 +153,7 @@ public class YALogger {
     }
 
     public void passiveSevere(String message, Throwable thrown) {
-        log(EpicLogLevel.PASSIVE_SEVERE, message, thrown);
+        log(EpicLogLevel.PASSIVE_SEVERE, withStackTrace(message, thrown));
     }
 
 
@@ -152,31 +165,32 @@ public class YALogger {
         logger.log(level, formatMessage(level, message), thrown);
     }
 
+    private static String withStackTrace(String message, Throwable thrown) {
+        if (thrown == null) {
+            return message;
+        }
+
+        java.io.StringWriter buffer = new java.io.StringWriter();
+        thrown.printStackTrace(new java.io.PrintWriter(buffer));
+        String trace = buffer.toString().replace("\r\n", "\n").trim();
+        return message + "\n" + trace;
+    }
+
     private String formatMessage(EpicLogLevel level, String message) {
+        if (!namePrefix.isEmpty()) {
+            message = namePrefix + message;
+        }
+
         if (color) {
             String prefix = getPrefix(level);
             String levelColor;
 
-            if (level == EpicLogLevel.SUCCESS) {
-                levelColor = "[§a✓§r] ";
-            } else if (level == EpicLogLevel.FAILURE) {
-                levelColor = "[§c×§r] ";
-            } else if (level == EpicLogLevel.PASSIVE_INFO) {
-                levelColor = "[§9!§r] ";
-            } else if (level == EpicLogLevel.PROCESS) {
-                levelColor = "[-] ";
-            } else if (level == EpicLogLevel.PASSIVE_QUESTION) {
-                levelColor = "[§6?§r] ";
-            } else if (level == EpicLogLevel.WARNING) {
+            if (level == EpicLogLevel.WARNING) {
                 levelColor = "§e";
-            } else if (level == EpicLogLevel.PASSIVE_WARNING) {
-                levelColor = "[§e!§r] ";
             } else if (level == EpicLogLevel.SEVERE) {
                 levelColor = "§c";
-            } else if (level == EpicLogLevel.PASSIVE_SEVERE) {
-                levelColor = "[§c!§r] ";
             } else {
-                levelColor = "";
+                levelColor = getLevelTag(level);
             }
 
             if (level == EpicLogLevel.CONSOLE) {
@@ -186,6 +200,32 @@ public class YALogger {
             }
         }
         return ANSIConverter.convertToAnsi(message);
+    }
+
+    private static String getLevelTag(EpicLogLevel level) {
+        if (modernFormat) {
+            switch (level) {
+                case SUCCESS: return "[§a✓§r] ";
+                case FAILURE: return "[§c×§r] ";
+                case PROCESS: return "[-] ";
+                case PASSIVE_INFO: return "[§9!§r] ";
+                case PASSIVE_WARNING: return "[§e!§r] ";
+                case PASSIVE_SEVERE: return "[§c!§r] ";
+                case PASSIVE_QUESTION: return "[§6?§r] ";
+                default: return "";
+            }
+        }
+
+        switch (level) {
+            case SUCCESS: return "§a[OK]§r ";
+            case FAILURE: return "§c[FAIL]§r ";
+            case PROCESS: return "[PROCESS] ";
+            case PASSIVE_INFO: return "§9[INFO]§r ";
+            case PASSIVE_WARNING: return "§e[WARNING]§r ";
+            case PASSIVE_SEVERE: return "§c[ERROR]§r ";
+            case PASSIVE_QUESTION: return "§6[QUESTION]§r ";
+            default: return "";
+        }
     }
 
     private String getPrefix(EpicLogLevel level) {

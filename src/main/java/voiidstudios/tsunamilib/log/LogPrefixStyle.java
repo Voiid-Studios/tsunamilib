@@ -28,7 +28,7 @@ public final class LogPrefixStyle {
         return of(prefix, prefix, prefix);
     }
 
-    static LogPrefixStyle defaultFor(String pluginName) {
+    public static LogPrefixStyle defaultFor(String pluginName) {
         String plain = "[" + pluginName + "] ";
         return new LogPrefixStyle(plain, plain, plain);
     }

@@ -2,6 +2,8 @@ package voiidstudios.tsunamilib.libs.tsunamigui.guis;
 
 import com.google.common.base.Preconditions;
 import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -14,6 +16,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public final class InteractionModifierListener implements Listener {
+    @EventHandler(priority = EventPriority.LOW)
     public void onGuiClick(final InventoryClickEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 
@@ -30,6 +33,7 @@ public final class InteractionModifierListener implements Listener {
         }
     }
 
+    @EventHandler(priority = EventPriority.LOW)
     public void onGuiDrag(final InventoryDragEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 

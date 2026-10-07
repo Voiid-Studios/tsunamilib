@@ -3,6 +3,7 @@ package voiidstudios.tsunamilib;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import voiidstudios.tsunamilib.log.LogPrefixStyle;
 import voiidstudios.tsunamilib.log.YALogger;
 import voiidstudios.tsunamilib.managers.AdventureManager;
 import voiidstudios.tsunamilib.managers.ConfigManager;
@@ -95,6 +96,6 @@ public final class TsunamiLib {
         if (plugin == null) {
             throw new IllegalArgumentException("plugin cannot be null.");
         }
-        return new MessagesManager(plugin, langDir, language, prefix, context.getLogger().withName(plugin));
+        return new MessagesManager(plugin, langDir, language, prefix, context.getLogger().withStyle(LogPrefixStyle.defaultFor(plugin.getName())));
     }
 }

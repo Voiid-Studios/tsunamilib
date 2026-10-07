@@ -15,6 +15,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 
 public final class GuiListener implements Listener {
+    @EventHandler
     public void onGuiClick(final InventoryClickEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 
@@ -68,6 +69,7 @@ public final class GuiListener implements Listener {
         }
     }
 
+    @EventHandler
     public void onGuiDrag(final InventoryDragEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 
@@ -77,6 +79,7 @@ public final class GuiListener implements Listener {
         if (dragAction != null) dragAction.execute(event);
     }
 
+    @EventHandler
     public void onGuiClose(final InventoryCloseEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 
@@ -87,6 +90,7 @@ public final class GuiListener implements Listener {
         if (closeAction != null && !gui.isUpdating() && gui.shouldRunCloseAction()) closeAction.execute(event);
     }
 
+    @EventHandler
     public void onGuiOpen(final InventoryOpenEvent event) {
         if (!(event.getInventory().getHolder() instanceof BaseGui)) return;
 
