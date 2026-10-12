@@ -5,12 +5,11 @@
 
     <groupId>voiidstudios.tsunamilib</groupId>
     <artifactId>TsunamiLib</artifactId>
-    <version>26.10.0</version>
+    <version>26.10.1</version>
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>8</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -80,9 +79,9 @@
             <version>4.4.1</version>
         </dependency>
         <dependency>
-            <groupId>dev.faststats.metrics</groupId>
+            <groupId>dev.faststats.metrics.j8</groupId>
             <artifactId>bukkit</artifactId>
-            <version>0.29.4</version>
+            <version>0.29.0</version>
         </dependency>
         <dependency>
             <groupId>com.mojang</groupId>
@@ -102,10 +101,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.2</version>
                 <configuration>
-                    <source>25</source>
+                    <source>${maven.compiler.release}</source>
                     <encoding>UTF-8</encoding>
                     <failOnError>false</failOnError>
                     <quiet>false</quiet>
@@ -125,6 +129,15 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>module-info.class</exclude>
+                                        <exclude>META-INF/versions/**/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                             <relocations>
                                 <relocation>
                                     <pattern>dev.faststats</pattern>

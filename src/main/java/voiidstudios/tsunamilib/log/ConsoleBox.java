@@ -40,7 +40,9 @@ public final class ConsoleBox {
             return "";
         }
 
-        return String.valueOf(character).repeat(amount);
+        char[] characters = new char[amount];
+        java.util.Arrays.fill(characters, character);
+        return new String(characters);
     }
 
     private static String padRight(String text, int visibleLength, int targetLength) {

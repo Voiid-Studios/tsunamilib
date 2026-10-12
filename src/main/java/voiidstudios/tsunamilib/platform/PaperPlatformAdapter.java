@@ -50,8 +50,8 @@ public class PaperPlatformAdapter implements PlatformAdapter {
 
     public void sendMessage(CommandSender sender, String message) {
         Object formatted = formatter.format(message);
-        if (formatted instanceof String text) {
-            sender.sendMessage(text);
+        if (formatted instanceof String) {
+            sender.sendMessage((String) formatted);
             return;
         }
 

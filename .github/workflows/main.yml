@@ -20,6 +20,12 @@ jobs:
       - name: Build Plugin
         run: mvn -B clean package --file pom.xml
 
+      - name: Verify Java 8 bytecode in the packaged plugin
+        run: |
+          for jar in target/TsunamiLib-*.jar; do
+            python3 scripts/verify-java8.py "$jar"
+          done
+
       - name: Upload Plugin Jar
         uses: actions/upload-artifact@v4
         with:

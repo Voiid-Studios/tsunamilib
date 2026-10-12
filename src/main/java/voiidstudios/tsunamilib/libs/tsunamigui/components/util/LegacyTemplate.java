@@ -32,7 +32,7 @@ public final class LegacyTemplate {
         }
 
         final Matcher matcher = EXPRESSION.matcher(text);
-        final StringBuilder result = new StringBuilder();
+        final StringBuffer result = new StringBuffer();
 
         while (matcher.find()) {
             final String replacement = evaluate(matcher.group(1), variables);

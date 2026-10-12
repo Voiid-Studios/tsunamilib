@@ -62,7 +62,8 @@ public final class GuiListener implements Listener {
 
         final GuiAction<InventoryClickEvent> itemAction = guiItem.getAction();
         if (itemAction != null) {
-            if (event.getWhoClicked() instanceof Player player) {
+            if (event.getWhoClicked() instanceof Player) {
+                final Player player = (Player) event.getWhoClicked();
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, SoundCategory.MASTER, 0.2f, 1f);
             }
             itemAction.execute(event);

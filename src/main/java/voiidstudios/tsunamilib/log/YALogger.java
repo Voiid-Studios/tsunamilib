@@ -1,5 +1,7 @@
 package voiidstudios.tsunamilib.log;
 
+import voiidstudios.tsunamilib.utils.TextUtils;
+
 public class YALogger {
     private final EpicPlatformLogger logger;
     private final boolean color;
@@ -32,7 +34,7 @@ public class YALogger {
     }
 
     public YALogger withName(String name) {
-        String tag = (name == null || name.isBlank()) ? "" : "(" + name + ") ";
+        String tag = (name == null || TextUtils.isBlank(name)) ? "" : "(" + name + ") ";
         YALogger named = new YALogger(logger, color, prefixStyle, tag);
         named.debug = this.debug;
         return named;

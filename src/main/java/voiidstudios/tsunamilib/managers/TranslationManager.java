@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import voiidstudios.tsunamilib.log.YALogger;
+import voiidstudios.tsunamilib.utils.TextUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +42,7 @@ public final class TranslationManager {
     }
 
     private static String normalizeDir(String dir) {
-        if (dir == null || dir.isBlank()) {
+        if (dir == null || TextUtils.isBlank(dir)) {
             return "lang";
         }
         String normalized = dir.replace('\\', '/');
@@ -51,7 +52,7 @@ public final class TranslationManager {
     }
 
     public void loadLanguage(String langCode) {
-        this.currentLang = (langCode == null || langCode.isBlank()) ? FALLBACK_LANG : langCode;
+        this.currentLang = (langCode == null || TextUtils.isBlank(langCode)) ? FALLBACK_LANG : langCode;
 
         extractBundledLanguages();
 

@@ -1,5 +1,7 @@
 package voiidstudios.tsunamilib.log;
 
+import voiidstudios.tsunamilib.utils.TextUtils;
+
 public final class LogPrefixStyle {
     private final String normal;
     private final String warning;
@@ -12,11 +14,11 @@ public final class LogPrefixStyle {
     }
 
     public static LogPrefixStyle of(String normal, String warning, String error) {
-        if (normal == null || normal.isBlank()) {
+        if (normal == null || TextUtils.isBlank(normal)) {
             throw new IllegalArgumentException("The normal prefix cannot be null or blank.");
         }
-        String resolvedWarning = (warning == null || warning.isBlank()) ? normal : warning;
-        String resolvedError = (error == null || error.isBlank()) ? resolvedWarning : error;
+        String resolvedWarning = (warning == null || TextUtils.isBlank(warning)) ? normal : warning;
+        String resolvedError = (error == null || TextUtils.isBlank(error)) ? resolvedWarning : error;
         return new LogPrefixStyle(normal, resolvedWarning, resolvedError);
     }
 

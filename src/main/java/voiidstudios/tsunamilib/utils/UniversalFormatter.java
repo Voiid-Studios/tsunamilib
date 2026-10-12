@@ -15,7 +15,7 @@ public class UniversalFormatter {
     }
 
     public Object format(String text) {
-        if (text == null || text.isBlank()) {
+        if (text == null || TextUtils.isBlank(text)) {
             return "";
         }
 

@@ -33,7 +33,7 @@ public final class ServerInfo {
 
     public static String formatted() {
         OptionalInt buildNumber = buildNumber();
-        if (buildNumber.isEmpty()) {
+        if (!buildNumber.isPresent()) {
             return String.format("%s §7(MC: %s)", brandName(), minecraftVersion());
         }
         return String.format("%s §7(MC: %s, Build: %s)", brandName(), minecraftVersion(), buildNumber.getAsInt());
